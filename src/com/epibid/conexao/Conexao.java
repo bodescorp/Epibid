@@ -7,30 +7,32 @@ package com.epibid.conexao;
 
 ;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-
+import java.sql.*;
+import javax.swing.JOptionPane;
 /**
  *
  * @author glay
  */
 public class Conexao {    
-    private String url;
-    private String usuario;
-    private String senha;
+    
+    /**
+     *
+     * @return
+     * @throws ClassNotFoundException
+     */
+    public static Connection conectaBD() throws ClassNotFoundException{
 
-    
-    public Conexao(){
-        url = "jdbc:postgresql://localhost:5432";
-        usuario = "postgres";
-        senha = "nada";
+        try{
+            Class.forName("org.postgresql.Driver");
+            Connection conecta = DriverManager.getConnection("jdbc:postgresql://localhost:5432/", "postgres","nada");
+            JOptionPane.showMessageDialog(null,"Conectado");
+            return conecta;
+        }
+        catch(SQLException error){
+            JOptionPane.showMessageDialog(null,error);
+            
+            return null;
+        }
     }
-    
-    public Connection getConnection() throws ClassNotFoundException,
-            SQLException {
-        Class.forName("org.postgresql.Driver");
-        return DriverManager.getConnection(url, usuario,senha);
-    }
-    
-}
+        
+} 

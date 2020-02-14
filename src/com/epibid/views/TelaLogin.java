@@ -1,21 +1,24 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.epibid.views;
+import java.sql.*;
+import com.epibid.conexao.Conexao;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-/**
- *
- * @author glay
- */
+
 public class TelaLogin extends javax.swing.JFrame {
-
+    
+    Connection conectando = null;
+    PreparedStatement pst = null;
+    ResultSet ts = null;
     /**
      * Creates new form TelaLogin
+     * @throws java.lang.ClassNotFoundException
      */
-    public TelaLogin() {
+    public TelaLogin() throws ClassNotFoundException {
         initComponents();
+        this.setLocationRelativeTo(null);
+         conectando = Conexao.conectaBD();
     }
 
     /**
@@ -73,7 +76,11 @@ public class TelaLogin extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaLogin().setVisible(true);
+                try {
+                    new TelaLogin().setVisible(true);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

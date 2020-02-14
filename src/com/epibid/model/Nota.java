@@ -5,6 +5,8 @@
  */
 package com.epibid.model;
 
+import com.epibid.modelenumm.BimestreType;
+
 /**
  *
  * @author glay
@@ -14,12 +16,10 @@ public class Nota {
     private BimestreType bimestre;
     private int valor;
 
-    public Nota(int id_nota, int bimestre, int valor) {
+    public Nota(int id_nota, BimestreType bimestre, int valor) {
         this.id_nota = id_nota;
         this.bimestre = bimestre;
         this.valor = valor;
-        
-        
     }
 
     public int getId_nota() {
@@ -30,11 +30,11 @@ public class Nota {
         this.id_nota = id_nota;
     }
 
-    public int getBimestre() {
+    public BimestreType getBimestre() {
         return bimestre;
     }
 
-    public void setBimestre(int bimestre) {
+    public void setBimestre(BimestreType bimestre) {
         this.bimestre = bimestre;
     }
 
