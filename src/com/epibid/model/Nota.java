@@ -11,7 +11,7 @@ package com.epibid.model;
  */
 public class Nota {
     private int id_nota;
-    private int bimestre;
+    private BimestreType bimestre;
     private int valor;
 
     public Nota(int id_nota, int bimestre, int valor) {

@@ -96,9 +96,22 @@ public class Bolsista {
         this.senha2 = senha2;
     }
 
+    @Override
+    public String toString() {
+        return "Bolsista{" + "nome=" + nome + ", email=" + email + ", ies=" + ies + ", matricula=" + matricula + ", endereco=" + endereco + ", escolaCampo=" + escolaCampo + ", senha=" + senha + ", senha2=" + senha2 + '}';
+    }
+    
+    public boolean autenticar(String email, String senha){
+        return this.email.equals(matricula) && this.senha.equals(senha);
+    }
+    
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Bolsista usuario = (Bolsista) o;
+        return Objects.equals(matricula, usuario.matricula);
+    }
     
     
 }
-
-
-
