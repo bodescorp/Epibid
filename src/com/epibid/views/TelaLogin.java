@@ -19,7 +19,7 @@ public class TelaLogin extends javax.swing.JFrame {
     public TelaLogin() throws ClassNotFoundException {
         initComponents();
         this.setLocationRelativeTo(null);
-         conectando = Conexao.conectaBD();
+        conectando = Conexao.conectaBD();
     }
 
     public void Logar (){
@@ -108,6 +108,11 @@ public class TelaLogin extends javax.swing.JFrame {
         getContentPane().add(jLabel2, gridBagConstraints);
 
         btnNewBolsista.setText("Cadrasto");
+        btnNewBolsista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNewBolsistaActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 5;
@@ -139,6 +144,18 @@ public class TelaLogin extends javax.swing.JFrame {
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         Logar();
     }//GEN-LAST:event_btnLoginActionPerformed
+
+    private void btnNewBolsistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewBolsistaActionPerformed
+        TelaCadrastoBolsista telaCBolsista = null;
+        try {
+            telaCBolsista = new TelaCadrastoBolsista();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        telaCBolsista.setVisible(true);
+        dispose();
+        
+    }//GEN-LAST:event_btnNewBolsistaActionPerformed
 
     /**
      * @param args the command line arguments

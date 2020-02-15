@@ -25,7 +25,6 @@ public class Conexao {
         try{
             Class.forName("org.postgresql.Driver");
             Connection conecta = DriverManager.getConnection("jdbc:postgresql://localhost:5432/", "postgres","nada");
-            JOptionPane.showMessageDialog(null,"Conectado");
             return conecta;
         }
         catch(SQLException error){
