@@ -83,6 +83,8 @@ public class TelaLogin extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         getContentPane().add(btnLogin, gridBagConstraints);
+
+        txt_matricula.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;

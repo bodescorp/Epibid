@@ -69,11 +69,21 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenu1.add(menuOficina);
 
         menuAtividade.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
-        menuAtividade.setText(" Atividadesde Campo");
+        menuAtividade.setText(" Atividades de Campo");
+        menuAtividade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuAtividadeActionPerformed(evt);
+            }
+        });
         jMenu1.add(menuAtividade);
 
         menuRelatorio.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
         menuRelatorio.setText("Relatorio");
+        menuRelatorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuRelatorioActionPerformed(evt);
+            }
+        });
         jMenu1.add(menuRelatorio);
 
         menuTurma.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.CTRL_MASK));
@@ -143,6 +153,33 @@ public class MenuPrincipal extends javax.swing.JFrame {
         
                          
     }//GEN-LAST:event_menuOficinaActionPerformed
+
+    private void menuAtividadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAtividadeActionPerformed
+     MenuInternoAtividade menuAtividade = null;
+        try {
+            menuAtividade = new MenuInternoAtividade();
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     menuAtividade.setVisible(true);
+     
+     planoFundo.add(menuAtividade);
+    }//GEN-LAST:event_menuAtividadeActionPerformed
+
+    private void menuRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuRelatorioActionPerformed
+        MenuInternoRelatorio menuRelatorio = null;
+        try {
+            menuRelatorio = new MenuInternoRelatorio();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        menuRelatorio.setVisible(true);
+        planoFundo.add(menuRelatorio);
+    }//GEN-LAST:event_menuRelatorioActionPerformed
 
     
 

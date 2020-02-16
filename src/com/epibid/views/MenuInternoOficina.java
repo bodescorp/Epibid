@@ -39,7 +39,8 @@ public final class MenuInternoOficina extends javax.swing.JInternalFrame {
         try{
             pst = conectando.prepareStatement(sql);
             rs = pst.executeQuery();
-            listagemOficina.setModel(DbUtils.resultSetToTableModel(rs));   
+            listagemOficina.setModel(DbUtils.resultSetToTableModel(rs)); 
+            
         }
         
         catch (SQLException error) {
@@ -60,11 +61,14 @@ public final class MenuInternoOficina extends javax.swing.JInternalFrame {
             
             rs = pst.executeQuery();
             
+            
            
         }
         
-        catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,ex);
+        catch (SQLException error) {
+            JOptionPane.showMessageDialog(null,"Cadrasto com sucesso","Cadrasto com sucesso",JOptionPane.INFORMATION_MESSAGE);
+             ListagemOficina();
+            JOptionPane.showMessageDialog(null,error);
         }
             
     }
