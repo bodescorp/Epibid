@@ -7,6 +7,7 @@ package com.epibid.model;
 
 import java.util.Date;
 
+
 /**
  *
  * @author glay

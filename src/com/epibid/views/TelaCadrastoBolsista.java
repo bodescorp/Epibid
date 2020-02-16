@@ -39,7 +39,7 @@ public class TelaCadrastoBolsista extends javax.swing.JFrame {
             pst.setString (5,txt_Endereco.getText());
             pst.setString (6,txtEscola_campo.getText());
             pst.setString(7,txt_Senha.getText());
-            pst.setString(8,txt_Senha2.getText());
+           
             
             rs = pst.executeQuery();
             
@@ -47,10 +47,11 @@ public class TelaCadrastoBolsista extends javax.swing.JFrame {
         }
         
         catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"Usuario ja existente");
+            JOptionPane.showMessageDialog(null,"Foi");
         }
             
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -69,14 +70,12 @@ public class TelaCadrastoBolsista extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
         txt_Email = new javax.swing.JTextField();
         txt_IES = new javax.swing.JTextField();
         txt_Matricula = new javax.swing.JTextField();
         txt_Endereco = new javax.swing.JTextField();
         txtEscola_campo = new javax.swing.JTextField();
         txt_Senha = new javax.swing.JTextField();
-        txt_Senha2 = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         facaCadrasto = new javax.swing.JButton();
 
@@ -95,10 +94,6 @@ public class TelaCadrastoBolsista extends javax.swing.JFrame {
         jLabel6.setText("Escola Campo");
 
         jLabel7.setText("Senha");
-
-        jLabel8.setText("Confirmar Senha");
-
-        txt_Senha2.setText("jTextField8");
 
         jLabel9.setText("Cadrasto");
 
@@ -136,11 +131,7 @@ public class TelaCadrastoBolsista extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(jLabel7)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txt_Senha, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel8)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txt_Senha2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txt_Senha, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -198,9 +189,7 @@ public class TelaCadrastoBolsista extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
-                            .addComponent(jLabel8)
-                            .addComponent(txt_Senha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_Senha2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txt_Senha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 18, Short.MAX_VALUE))
                     .addComponent(facaCadrasto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -268,7 +257,6 @@ public class TelaCadrastoBolsista extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField txtEscola_campo;
     private javax.swing.JTextField txt_Email;
@@ -277,6 +265,5 @@ public class TelaCadrastoBolsista extends javax.swing.JFrame {
     private javax.swing.JTextField txt_Matricula;
     private javax.swing.JTextField txt_Nome;
     private javax.swing.JTextField txt_Senha;
-    private javax.swing.JTextField txt_Senha2;
     // End of variables declaration//GEN-END:variables
 }

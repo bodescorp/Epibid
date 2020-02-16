@@ -6,6 +6,10 @@
 package com.epibid.views;
 
 import static java.awt.GridBagConstraints.BOTH;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import com.epibid.views.TelaLogin;
+import java.sql.SQLException;
 
 /**
  *
@@ -18,7 +22,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
      */
     public MenuPrincipal() {
         initComponents();
-        //this.setExtendedState(MAXIMIZED_BOTH);
+        this.setExtendedState(MAXIMIZED_BOTH);
+        
     }
 
     /**
@@ -30,24 +35,23 @@ public class MenuPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        JplanoDiario = new javax.swing.JDesktopPane();
+        planoFundo = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         diarioNovo = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
-        jMenu4 = new javax.swing.JMenu();
-        jMenu5 = new javax.swing.JMenu();
-        jMenu6 = new javax.swing.JMenu();
-        jMenu7 = new javax.swing.JMenu();
+        menuOficina = new javax.swing.JMenuItem();
+        menuAtividade = new javax.swing.JMenuItem();
+        menuRelatorio = new javax.swing.JMenuItem();
+        menuTurma = new javax.swing.JMenuItem();
+        Opcoes = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jMenu1.setText("Diaros");
+        jMenu1.setText("Menu");
 
         diarioNovo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.CTRL_MASK));
-        diarioNovo.setText("Add Diario");
+        diarioNovo.setText("Diario");
         diarioNovo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 diarioNovoActionPerformed(evt);
@@ -55,24 +59,30 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         jMenu1.add(diarioNovo);
 
+        menuOficina.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_MASK));
+        menuOficina.setText("Oficina");
+        menuOficina.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuOficinaActionPerformed(evt);
+            }
+        });
+        jMenu1.add(menuOficina);
+
+        menuAtividade.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
+        menuAtividade.setText(" Atividadesde Campo");
+        jMenu1.add(menuAtividade);
+
+        menuRelatorio.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
+        menuRelatorio.setText("Relatorio");
+        jMenu1.add(menuRelatorio);
+
+        menuTurma.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.CTRL_MASK));
+        menuTurma.setText("Turma");
+        jMenu1.add(menuTurma);
+
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Oficinas");
-        jMenuBar1.add(jMenu2);
-
-        jMenu3.setText("Atividades");
-        jMenuBar1.add(jMenu3);
-
-        jMenu4.setText("Album");
-        jMenuBar1.add(jMenu4);
-
-        jMenu5.setText("Turmas");
-        jMenuBar1.add(jMenu5);
-
-        jMenu6.setText("Relatorio");
-        jMenuBar1.add(jMenu6);
-
-        jMenu7.setText("Perfil");
+        Opcoes.setText("Opções");
 
         jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_END, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem2.setText("Sair");
@@ -81,9 +91,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 jMenuItem2ActionPerformed(evt);
             }
         });
-        jMenu7.add(jMenuItem2);
+        Opcoes.add(jMenuItem2);
 
-        jMenuBar1.add(jMenu7);
+        jMenuBar1.add(Opcoes);
 
         setJMenuBar(jMenuBar1);
 
@@ -91,11 +101,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(JplanoDiario, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addComponent(planoFundo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(JplanoDiario, javax.swing.GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE)
+            .addComponent(planoFundo, javax.swing.GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE)
         );
 
         pack();
@@ -106,57 +116,46 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void diarioNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_diarioNovoActionPerformed
-        MenuInternoDiario menuDiario = new MenuInternoDiario();
-        menuDiario.setVisible(true);
-        JplanoDiario.add(menuDiario);
+        MenuInternoDiario menuDiario = null;
+        try {
+            menuDiario = new MenuInternoDiario();
+            menuDiario.setVisible(true);
+            planoFundo.add(menuDiario);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_diarioNovoActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+    private void menuOficinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuOficinaActionPerformed
+        MenuInternoOficina menuOficina = null;
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
+            menuOficina = new MenuInternoOficina();
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
-        //</editor-fold>
+        menuOficina.setVisible(true);
+        planoFundo.add(menuOficina);
+        
+                         
+    }//GEN-LAST:event_menuOficinaActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MenuPrincipal().setVisible(true);
-            }
-        });
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDesktopPane JplanoDiario;
+    private javax.swing.JMenu Opcoes;
     private javax.swing.JMenuItem diarioNovo;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenu jMenu6;
-    private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem menuAtividade;
+    private javax.swing.JMenuItem menuOficina;
+    private javax.swing.JMenuItem menuRelatorio;
+    private javax.swing.JMenuItem menuTurma;
+    private javax.swing.JDesktopPane planoFundo;
     // End of variables declaration//GEN-END:variables
 }
