@@ -33,7 +33,7 @@ public class TelaLogin extends javax.swing.JFrame {
             rs = pst.executeQuery();
             
             if(rs.next()){
-                MenuPrincipal tela = new MenuPrincipal();
+                MenuPrincipal tela = new MenuPrincipal(Integer.parseInt(txt_matricula.getText()));
                 tela.setVisible(true);
                 dispose();
                 
@@ -71,6 +71,7 @@ public class TelaLogin extends javax.swing.JFrame {
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
+        btnLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/epibid/Icones/accept.png"))); // NOI18N
         btnLogin.setText("Entrar");
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -110,6 +111,7 @@ public class TelaLogin extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         getContentPane().add(jLabel2, gridBagConstraints);
 
+        btnNewBolsista.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/epibid/Icones/add.png"))); // NOI18N
         btnNewBolsista.setText("Cadrasto");
         btnNewBolsista.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
