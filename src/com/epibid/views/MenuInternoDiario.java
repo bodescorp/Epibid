@@ -55,16 +55,20 @@ public class MenuInternoDiario extends javax.swing.JInternalFrame {
             pst.setString (2,txt_Relato.getText());
             pst.setInt(3,bolsista);
             
-            rs = pst.executeQuery();
-            
-           
+            pst.execute();
+            JOptionPane.showMessageDialog(null,"Cadrasto com sucesso","Cadrasto com sucesso",JOptionPane.INFORMATION_MESSAGE);
+            ListagemDiarios(bolsista);
+            limparCampos();
         }
         
         catch (SQLException error) {
-            JOptionPane.showMessageDialog(null,"Cadrasto com sucesso","Cadrasto com sucesso",JOptionPane.INFORMATION_MESSAGE);
-             ListagemDiarios(bolsista);
+            
+             
             JOptionPane.showMessageDialog(null,error);
         }
+        catch(Exception error){
+            JOptionPane.showMessageDialog(null,"Campo Obrigatorio vazio");
+    }
             
     }
     public void PesquisarDiario(int bolsista){
@@ -107,7 +111,7 @@ public class MenuInternoDiario extends javax.swing.JInternalFrame {
             pst.executeUpdate();
             JOptionPane.showMessageDialog(null,"Editado com Sucesso","Editado com Sucesso",JOptionPane.INFORMATION_MESSAGE);
             ListagemDiarios(bolsista);
-           
+           limparCampos();
         }
         
         catch (SQLException error) {
@@ -116,6 +120,9 @@ public class MenuInternoDiario extends javax.swing.JInternalFrame {
             
             JOptionPane.showMessageDialog(null,error);
         }
+        catch(Exception error){
+            JOptionPane.showMessageDialog(null,"Campo Obrigatorio vazio");
+    }
     }
     public void Delete(int bolsista) throws SQLException, ClassNotFoundException{
         String sql = "Delete from Diario where cod_diario = ? and bolsista = "+bolsista;
@@ -124,9 +131,9 @@ public class MenuInternoDiario extends javax.swing.JInternalFrame {
             pst.setInt (1,Integer.parseInt(txtCodDiarios.getText()));          
             
             pst.executeUpdate();
-            JOptionPane.showMessageDialog(null,"Editado com Sucesso","Editado com Sucesso",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Eliminado com Sucesso","Eliminado com Sucesso",JOptionPane.INFORMATION_MESSAGE);
             ListagemDiarios(bolsista);
-           
+           limparCampos();
         }
         
         catch (SQLException error) {
@@ -135,6 +142,9 @@ public class MenuInternoDiario extends javax.swing.JInternalFrame {
             
             JOptionPane.showMessageDialog(null,error);
         }
+        catch(Exception error){
+            JOptionPane.showMessageDialog(null,"Campo Obrigatorio vazio");
+    }
     }
    
     public void limparCampos(){

@@ -41,17 +41,19 @@ public class TelaCadrastoBolsista extends javax.swing.JFrame {
             pst.setString(7,txt_Senha.getText());
            
             
-            rs = pst.executeQuery();
-            
-           
-        }
-        
-        catch (SQLException ex) {
+            pst.execute();
             JOptionPane.showMessageDialog(null,"Bom Cadrasto");
             TelaLogin tela = new TelaLogin();
             tela.setVisible(true);
             dispose();
+           
         }
+        
+        catch (SQLException error) {
+            JOptionPane.showMessageDialog(null,error);
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null,"Vc fez uma dessas 2 opções: Ou vc colocou letras na 'matricula' ou vc deixou algum campo obrigatorio vazios, um xero e um abraço");
+    }
             
     }
     
@@ -84,21 +86,24 @@ public class TelaCadrastoBolsista extends javax.swing.JFrame {
         Voltar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Cadrasto");
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/epibid/Icones/user.png"))); // NOI18N
         jLabel1.setText("Nome");
 
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/epibid/Icones/email.png"))); // NOI18N
         jLabel2.setText("E-mail");
 
         jLabel3.setText("IES");
 
-        jLabel4.setText("Matricula");
+        jLabel4.setText("Matricula *");
 
         jLabel5.setText("Endereço");
 
         jLabel6.setText("Escola Campo");
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/epibid/Icones/key.png"))); // NOI18N
-        jLabel7.setText("Senha");
+        jLabel7.setText("Senha*");
 
         jLabel9.setText("Cadrasto");
 
@@ -134,11 +139,7 @@ public class TelaCadrastoBolsista extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtEscola_campo, javax.swing.GroupLayout.DEFAULT_SIZE, 416, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(54, 54, 54)
-                                .addComponent(txt_Nome)
-                                .addGap(143, 143, 143)))
+                                .addComponent(txtEscola_campo, javax.swing.GroupLayout.DEFAULT_SIZE, 416, Short.MAX_VALUE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -150,14 +151,15 @@ public class TelaCadrastoBolsista extends javax.swing.JFrame {
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txt_IES, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel4))
+                                .addGap(69, 69, 69))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel2))
+                                .addComponent(jLabel2)
                                 .addGap(18, 18, 18)
-                                .addComponent(txt_Email)))
+                                .addComponent(txt_Email))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txt_Nome, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -169,7 +171,10 @@ public class TelaCadrastoBolsista extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txt_Matricula, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel4)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(txt_Matricula, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
         );
         layout.setVerticalGroup(

@@ -31,11 +31,11 @@ public class MenuInternoRelatorio extends javax.swing.JInternalFrame {
         conectando = Conexao.conectaBD(); 
         user.setText(Integer.toString(bolsista));
         ListagemRelatorios(bolsista);
-        ;
+        
     }
     
     public void ListagemRelatorios(int bolsista) throws SQLException, ClassNotFoundException{
-        String sql = "Select * from Relatorio ";
+        String sql = "Select * from Relatorio where bolsista = "+bolsista;
         try{
             pst = conectando.prepareStatement(sql);
             rs = pst.executeQuery();
@@ -54,23 +54,27 @@ public class MenuInternoRelatorio extends javax.swing.JInternalFrame {
             pst.setString (1,txtNome.getText());
             pst.setString (2,txtTrabalhos.getText());
             pst.setString (3,txtResultados.getText());
-            pst.setInt (4,2001);
+            pst.setInt (4,bolsista);
             
-            rs = pst.executeQuery();
-            
+            pst.execute();
+            JOptionPane.showMessageDialog(null,"Cadrasto com sucesso","Cadrasto com sucesso",JOptionPane.INFORMATION_MESSAGE);
+             ListagemRelatorios(bolsista);           
+            limparCampos();
            
         }
         
         catch (SQLException error) {
-            JOptionPane.showMessageDialog(null,"Cadrasto com sucesso","Cadrasto com sucesso",JOptionPane.INFORMATION_MESSAGE);
-             ListagemRelatorios(bolsista);
+            
             
             JOptionPane.showMessageDialog(null,error);
         }
+        catch(Exception error){
+            JOptionPane.showMessageDialog(null,"Campo Obrigatorio vazio");
+    }
             
     }
     public void PesquisarRelatorio(int bolsista){
-        String sql = "Select * from Relatorio where nome like ?";
+        String sql = "Select * from Relatorio where nome like ? and bolsista = "+bolsista;
         
         try{
             pst = conectando.prepareStatement(sql);
@@ -112,7 +116,7 @@ public class MenuInternoRelatorio extends javax.swing.JInternalFrame {
             pst.executeUpdate();
             JOptionPane.showMessageDialog(null,"Editado com Sucesso","Editado com Sucesso",JOptionPane.INFORMATION_MESSAGE);
             ListagemRelatorios(bolsista);
-           
+           limparCampos();
         }
         
         catch (SQLException error) {
@@ -121,6 +125,9 @@ public class MenuInternoRelatorio extends javax.swing.JInternalFrame {
             
             JOptionPane.showMessageDialog(null,error);
         }
+        catch(Exception error){
+            JOptionPane.showMessageDialog(null,"Campo Obrigatorio vazio");
+    }
     }
     public void Delete(int bolsista) throws SQLException, ClassNotFoundException{
         String sql = "Delete from Relatorio where id_relatorio = ?";
@@ -131,7 +138,7 @@ public class MenuInternoRelatorio extends javax.swing.JInternalFrame {
             pst.executeUpdate();
             JOptionPane.showMessageDialog(null,"Eliminado com Sucesso","Eliminado com Sucesso",JOptionPane.INFORMATION_MESSAGE);
             ListagemRelatorios(bolsista);
-           
+           limparCampos();
         }
         
         catch (SQLException error) {
@@ -140,6 +147,9 @@ public class MenuInternoRelatorio extends javax.swing.JInternalFrame {
             
             JOptionPane.showMessageDialog(null,error);
         }
+        catch(Exception error){
+            JOptionPane.showMessageDialog(null,"Campo Obrigatorio vazio");
+    }
     }
    
     public void limparCampos(){

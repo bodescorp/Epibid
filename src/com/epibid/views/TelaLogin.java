@@ -44,7 +44,9 @@ public class TelaLogin extends javax.swing.JFrame {
         catch(SQLException error){
             JOptionPane.showMessageDialog(null, error);
             
-        }
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null,"Por favor não bug, faça direito");
+    }
     }
    
     /**

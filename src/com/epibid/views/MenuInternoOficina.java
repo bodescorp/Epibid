@@ -36,7 +36,7 @@ public final class MenuInternoOficina extends javax.swing.JInternalFrame {
     }
     
     public void ListagemOficina(int bolsista) throws SQLException, ClassNotFoundException{
-        String sql = "Select * from Oficina  where bolsista = "+bolsista;
+        String sql = "select * from oficina where bolsista = "+bolsista;
         try{
             pst = conectando.prepareStatement(sql);
             rs = pst.executeQuery();
@@ -60,17 +60,21 @@ public final class MenuInternoOficina extends javax.swing.JInternalFrame {
             pst.setString (4,txtRelato.getText());
             pst.setInt (5,bolsista);
             
-            rs = pst.executeQuery();
-            
+            pst.execute();
+            JOptionPane.showMessageDialog(null,"Cadrasto com sucesso","Cadrasto com sucesso",JOptionPane.INFORMATION_MESSAGE);
+             ListagemOficina(bolsista);
+            limparCampos();
             
            
         }
         
         catch (SQLException error) {
-            JOptionPane.showMessageDialog(null,"Cadrasto com sucesso","Cadrasto com sucesso",JOptionPane.INFORMATION_MESSAGE);
-             ListagemOficina(bolsista);
+            
             JOptionPane.showMessageDialog(null,error);
         }
+        catch(Exception error){
+            JOptionPane.showMessageDialog(null,"Campo Obrigatorio vazio");
+    }
             
     }
     public void PesquisarOficina(int bolsista){
@@ -116,6 +120,7 @@ public final class MenuInternoOficina extends javax.swing.JInternalFrame {
            pst.executeUpdate();
            JOptionPane.showMessageDialog(null,"Editado com Sucesso","Editado com Sucesso",JOptionPane.INFORMATION_MESSAGE);
            ListagemOficina(bolsista);
+           limparCampos();
            
         }
         
@@ -125,9 +130,12 @@ public final class MenuInternoOficina extends javax.swing.JInternalFrame {
             
             JOptionPane.showMessageDialog(null,error);
         }
+        catch(Exception error){
+            JOptionPane.showMessageDialog(null,"Campo Obrigatorio vazio");
+    }
     }
     public void Delete(int bolsista) throws SQLException, ClassNotFoundException{
-        String sql = "Delete from Oficina where cod_oficina = ? and where bolsista = "+bolsista;
+        String sql = "Delete from Oficina where cod_oficina = ? and bolsista = "+bolsista;
         try{
             pst = conectando.prepareStatement(sql);
             pst.setInt (1,Integer.parseInt(txtCodOficina.getText()));          
@@ -135,6 +143,7 @@ public final class MenuInternoOficina extends javax.swing.JInternalFrame {
             pst.executeUpdate();
             JOptionPane.showMessageDialog(null,"Removido com Sucesso","Removido com Sucesso",JOptionPane.INFORMATION_MESSAGE);
             ListagemOficina(bolsista);
+            limparCampos();
            
         }
         
@@ -144,6 +153,9 @@ public final class MenuInternoOficina extends javax.swing.JInternalFrame {
             
             JOptionPane.showMessageDialog(null,error);
         }
+        catch(Exception error){
+            JOptionPane.showMessageDialog(null,"Campo Obrigatorio vazio");
+    }
     }
    
     public void limparCampos(){
@@ -211,7 +223,7 @@ public final class MenuInternoOficina extends javax.swing.JInternalFrame {
 
         jLabel3.setText(" Nome: ");
 
-        jLabel4.setText("Duranção: ");
+        jLabel4.setText("Duração: ");
 
         jLabel5.setText("Relato: ");
 
@@ -293,7 +305,7 @@ public final class MenuInternoOficina extends javax.swing.JInternalFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE)))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(edit)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)

@@ -58,14 +58,15 @@ public class MenuInternoAtividade extends javax.swing.JInternalFrame {
             pst.setString (5,txtRelato.getText());
             pst.setInt (6,bolsista);
             
-            rs = pst.executeQuery();
+            pst.execute();
+            JOptionPane.showMessageDialog(null,"Cadrasto com sucesso","Cadrasto com sucesso",JOptionPane.INFORMATION_MESSAGE);
             ListagemAtividades(bolsista);
+            limparCampos();
            
         }
         
         catch (SQLException error) {
-            JOptionPane.showMessageDialog(null,"Cadrasto com sucesso","Cadrasto com sucesso",JOptionPane.INFORMATION_MESSAGE);
-            ListagemAtividades(bolsista);
+            
             
             JOptionPane.showMessageDialog(null,error);
         }
@@ -117,7 +118,7 @@ public class MenuInternoAtividade extends javax.swing.JInternalFrame {
             pst.executeUpdate();
             JOptionPane.showMessageDialog(null,"Editado com Sucesso","Editado com Sucesso",JOptionPane.INFORMATION_MESSAGE);
             ListagemAtividades(bolsista);
-           
+            limparCampos();
         }
         
         catch (SQLException error) {
@@ -134,9 +135,9 @@ public class MenuInternoAtividade extends javax.swing.JInternalFrame {
             pst.setInt (1,Integer.parseInt(txtCodAtividade.getText()));          
             
             pst.executeUpdate();
-            JOptionPane.showMessageDialog(null,"Editado com Sucesso","Editado com Sucesso",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Deletado com Sucesso","Deletado com Sucesso",JOptionPane.INFORMATION_MESSAGE);
             ListagemAtividades(bolsista);
-           
+            limparCampos();
         }
         
         catch (SQLException error) {
@@ -144,7 +145,10 @@ public class MenuInternoAtividade extends javax.swing.JInternalFrame {
             
             
             JOptionPane.showMessageDialog(null,error);
-        }
+        }catch(Exception error){
+            JOptionPane.showMessageDialog(null,"Campo Obrigatorio vazio");
+    }
+        
     }
    
     public void limparCampos(){

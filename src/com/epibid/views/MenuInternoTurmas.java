@@ -58,12 +58,14 @@ public class MenuInternoTurmas extends javax.swing.JInternalFrame {
             pst.setString (2,txtSupervisor.getText());
             pst.setInt(3,bolsista);
             
-            rs = pst.executeQuery();
-            
+            pst.execute();
+            JOptionPane.showMessageDialog(null,"Cadrasto com sucesso","Cadrasto com sucesso",JOptionPane.INFORMATION_MESSAGE);
+            ListagemTurma(bolsista);
+            limparCampos();
+            limparCamposAlunos();
            
         }catch (SQLException error) {
-            JOptionPane.showMessageDialog(null,"Cadrasto com sucesso","Cadrasto com sucesso",JOptionPane.INFORMATION_MESSAGE);
-             ListagemTurma(bolsista);
+            
             JOptionPane.showMessageDialog(null,error);
         }
        
@@ -109,7 +111,8 @@ public class MenuInternoTurmas extends javax.swing.JInternalFrame {
             pst.executeUpdate();
             JOptionPane.showMessageDialog(null,"Editado com Sucesso","Editado com Sucesso",JOptionPane.INFORMATION_MESSAGE);
             ListagemTurma(bolsista);
-           
+            limparCampos();
+            
         }
         
         catch (SQLException error) {
@@ -118,6 +121,10 @@ public class MenuInternoTurmas extends javax.swing.JInternalFrame {
             
             JOptionPane.showMessageDialog(null,error);
         }
+        catch(Exception error){
+            JOptionPane.showMessageDialog(null,"Campo Obrigatorio vazio");
+    }
+
     }
     
     public void Delete(int bolsista) throws SQLException, ClassNotFoundException{
@@ -129,7 +136,7 @@ public class MenuInternoTurmas extends javax.swing.JInternalFrame {
             pst.executeUpdate();
             JOptionPane.showMessageDialog(null,"Eliminado com Sucesso","Eliminado com Sucesso",JOptionPane.INFORMATION_MESSAGE);
             ListagemTurma(bolsista);
-           
+           limparCampos();
         }
         
         catch (SQLException error) {
@@ -138,6 +145,9 @@ public class MenuInternoTurmas extends javax.swing.JInternalFrame {
             
             JOptionPane.showMessageDialog(null,error);
         }
+        catch(Exception error){
+            JOptionPane.showMessageDialog(null,"Campo Obrigatorio vazio");
+    }
     }
     
     public void DeleteAluno(int bolsista) throws SQLException, ClassNotFoundException{
@@ -149,7 +159,7 @@ public class MenuInternoTurmas extends javax.swing.JInternalFrame {
             pst.executeUpdate();
             JOptionPane.showMessageDialog(null,"Eliminado com Sucesso","Eliminado com Sucesso",JOptionPane.INFORMATION_MESSAGE);
             ListagemTurma(bolsista);
-           
+           limparCamposAlunos();
         }
         
         catch (SQLException error) {
@@ -158,6 +168,9 @@ public class MenuInternoTurmas extends javax.swing.JInternalFrame {
             
             JOptionPane.showMessageDialog(null,error);
         }
+        catch(Exception error){
+            JOptionPane.showMessageDialog(null,"Campo Obrigatorio vazio");
+    }
     }
     
      public void EditarAluno(int bolsista) throws SQLException, ClassNotFoundException{
@@ -172,7 +185,7 @@ public class MenuInternoTurmas extends javax.swing.JInternalFrame {
             pst.executeUpdate();
             JOptionPane.showMessageDialog(null,"Editado com Sucesso","Editado com Sucesso",JOptionPane.INFORMATION_MESSAGE);
             ListagemAluno(bolsista);
-           
+           limparCamposAlunos();
         }
         
         catch (SQLException error) {
@@ -181,6 +194,9 @@ public class MenuInternoTurmas extends javax.swing.JInternalFrame {
             
             JOptionPane.showMessageDialog(null,error);
         }
+        catch(Exception error){
+            JOptionPane.showMessageDialog(null,"Campo Obrigatorio vazio");
+    }
     }
      
     public void MostrarAluno(){
@@ -201,13 +217,15 @@ public class MenuInternoTurmas extends javax.swing.JInternalFrame {
             pst.setInt(4,bolsista);
             
             
-            rs = pst.executeQuery();
-            
-           
-        }catch (SQLException error) {
+            pst.execute();
             JOptionPane.showMessageDialog(null,"Cadrasto com sucesso","Cadrasto com sucesso",JOptionPane.INFORMATION_MESSAGE);
-             ListagemAluno(bolsista);
+            ListagemAluno(bolsista);
+           limparCamposAlunos();
+        }catch (SQLException error) {
+            
             JOptionPane.showMessageDialog(null,error);
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null,"Certeza que vc: Colocou em 'Idade' alguma letra ou vc esqueceu de selecionar a turma pra inserir o aluno");
         }
        
     
@@ -227,6 +245,7 @@ public class MenuInternoTurmas extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null,error);
             
         }
+        
             
     }
     
@@ -419,7 +438,6 @@ public class MenuInternoTurmas extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(user))
@@ -453,9 +471,6 @@ public class MenuInternoTurmas extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(jLabel4))
-                            .addGroup(layout.createSequentialGroup()
                                 .addGap(39, 39, 39)
                                 .addComponent(jLabel6)
                                 .addGap(18, 18, 18)
@@ -467,7 +482,13 @@ public class MenuInternoTurmas extends javax.swing.JInternalFrame {
                         .addComponent(jLabel7)
                         .addGap(4, 4, 4)
                         .addComponent(idAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(jLabel4)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cadrastoAluno)
@@ -477,6 +498,7 @@ public class MenuInternoTurmas extends javax.swing.JInternalFrame {
                         .addGap(13, 13, 13)
                         .addComponent(limparaCamposAlunos)))
                 .addContainerGap())
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 811, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -486,9 +508,29 @@ public class MenuInternoTurmas extends javax.swing.JInternalFrame {
                     .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(idTurma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(limparTela))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(txtSupervisor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(34, 34, 34)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(editar)
+                            .addComponent(cadrasto)
+                            .addComponent(delete))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -510,27 +552,8 @@ public class MenuInternoTurmas extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(idadeAluno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
-                        .addComponent(user))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(idTurma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(limparTela))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(txtSupervisor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(34, 34, 34)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(editar)
-                            .addComponent(cadrasto)
-                            .addComponent(delete))
-                        .addContainerGap())))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                        .addComponent(user))))
         );
 
         pack();
